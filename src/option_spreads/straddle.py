@@ -24,15 +24,15 @@ class Straddle:
         underlying_price = list(range(lower_range, upper_range+1))
         return(underlying_price)
 
-### work from here-----------------------------------------
 
     def spread_profit(self):
         underlying_price = self.range_underlying_price()
-        profit_strike_1 = numpy.array([max(i - self.strike_1, 0) - self.price_1 for i in underlying_price])
-        profit_strike_2 = -2 * numpy.array([max(i - self.strike_2, 0) - self.price_2 for i in underlying_price])
-        profit_strike_3 = numpy.array([max(i - self.strike_3, 0) - self.price_3 for i in underlying_price])
-        spread_profit = profit_strike_1 + profit_strike_2 + profit_strike_3
+        profit_call = numpy.array([max(i - self.strike, 0) - self.call_price for i in underlying_price])
+        profit_put = numpy.array([max(self.strike - i, 0) - self.put_price for i in underlying_price])
+        spread_profit = profit_call + profit_put
         return(spread_profit)
+
+### work from here-----------------------------------------
 
     def plot(self):
         underlying_price = self.range_underlying_price()
