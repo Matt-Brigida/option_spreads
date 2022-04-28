@@ -32,26 +32,25 @@ class Straddle:
         spread_profit = profit_call + profit_put
         return(spread_profit)
 
-### work from here-----------------------------------------
 
     def plot(self):
         underlying_price = self.range_underlying_price()
         spread_profit = self.spread_profit()
         spread_plot = seaborn.lineplot(x = underlying_price, y = spread_profit)
         fig = spread_plot.get_figure()
-        fig.savefig("butterfly_profit.png")
-        ## spread_plot
-        ## plt.show()
+        fig.savefig("straddle_profit.png")
+
 
     def max_loss(self):
         ## calculate max gain, max loss, and b/e.  Returns dict-------
-        max_loss = -1 * (- self.price_1 + 2 * self.price_2 - self.price_3)
+        max_loss = self.call_price + self.put_price
         return(max_loss)
 
     def max_gain(self):
-        max_gain = (self.strike_2 - self.strike_1) - max_loss
+        max_gain = "no limit"
         return(max_gain)
 
+### work from here-----------------------------------------
         
     def probability_profit(self, stock_price, vol, rf, days_to_option_exp):
         """Calculate the risk-neutral probability of profiting from the option spread"""
