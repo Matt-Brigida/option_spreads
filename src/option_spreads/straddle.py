@@ -13,6 +13,7 @@ class Straddle:
         self.long_short = long_short
 
     def breakeven(self):
+        """A Straddle that doesn't admit an arbitrage has two break-even points. This method calculates each."""
         max_loss = self.max_loss()
         be_1 = self.strike + (call_price + put_price)
         be_2 = self.strike - (call_price + put_price)
